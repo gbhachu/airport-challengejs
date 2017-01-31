@@ -5,6 +5,7 @@ describe('Airport', function() {
     var airport;
     var plane;
     var weather;
+    var airport2;
 
     beforeEach (function(){
       plane = new Plane();
@@ -32,6 +33,12 @@ describe('Airport', function() {
           expect(airport._planes).not.toContain(plane);
         });
       });
+      describe('stops plane from landing if airport is full', function() {
+          it('raises cannot land plane error', function() {
+              airport2 = new Airport(weather, 0)
+              expect(function() {airport2.landPlane(plane)}).toThrowError("cannot land: airport is full");
+          });
+          });
     });
 
     describe('weather is stormy', function(){
